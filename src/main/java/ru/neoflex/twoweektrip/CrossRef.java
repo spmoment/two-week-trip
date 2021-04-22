@@ -9,8 +9,9 @@ public class CrossRef implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        System.out.println("The country is " + delegateExecution.getVariable("country"));
         var country = delegateExecution.getVariable("country");
-        delegateExecution.setVariable("country", country);
+        System.out.println("The country is " + country);
+        String jsonCountry = "{ \"country\": \"" + country + "\"}";
+        delegateExecution.setVariable("country", jsonCountry);
     }
 }

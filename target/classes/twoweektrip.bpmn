@@ -5,23 +5,16 @@
       <bpmn:outgoing>Flow_0iwoszt</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0iwoszt" sourceRef="StartEvent_1" targetRef="Activity_0o05h26" />
-    <bpmn:serviceTask id="Activity_0o05h26" name="CrossRef" camunda:class="ru.neoflex.twoweektrip.CrossRef">
-      <bpmn:incoming>Flow_0iwoszt</bpmn:incoming>
-      <bpmn:outgoing>Flow_06vkvuw</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:endEvent id="Event_0tbpvz9">
       <bpmn:incoming>Flow_0h0kavm</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_06vkvuw" sourceRef="Activity_0o05h26" targetRef="Activity_1x43lnh" />
     <bpmn:serviceTask id="Activity_1x43lnh" name="Connect to CapitalController">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript">{ "country": "RF"}</camunda:script>
-            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">${country}</camunda:inputParameter>
             <camunda:inputParameter name="url">http://localhost:8080/api/capital</camunda:inputParameter>
-            <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
                 <camunda:entry key="Content-type">application/json</camunda:entry>
@@ -41,20 +34,25 @@
       <bpmn:outgoing>Flow_0h0kavm</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0h0kavm" sourceRef="Activity_1x43lnh" targetRef="Event_0tbpvz9" />
+    <bpmn:serviceTask id="Activity_0o05h26" name="CrossRef" camunda:class="ru.neoflex.twoweektrip.CrossRef">
+      <bpmn:incoming>Flow_0iwoszt</bpmn:incoming>
+      <bpmn:outgoing>Flow_06vkvuw</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_06vkvuw" sourceRef="Activity_0o05h26" targetRef="Activity_1x43lnh" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="cross-ref">
-      <bpmndi:BPMNEdge id="Flow_0iwoszt_di" bpmnElement="Flow_0iwoszt">
-        <di:waypoint x="188" y="120" />
-        <di:waypoint x="270" y="120" />
+      <bpmndi:BPMNEdge id="Flow_0h0kavm_di" bpmnElement="Flow_0h0kavm">
+        <di:waypoint x="580" y="120" />
+        <di:waypoint x="862" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_06vkvuw_di" bpmnElement="Flow_06vkvuw">
         <di:waypoint x="370" y="120" />
         <di:waypoint x="480" y="120" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0h0kavm_di" bpmnElement="Flow_0h0kavm">
-        <di:waypoint x="580" y="120" />
-        <di:waypoint x="862" y="120" />
+      <bpmndi:BPMNEdge id="Flow_0iwoszt_di" bpmnElement="Flow_0iwoszt">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="270" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="152" y="102" width="36" height="36" />

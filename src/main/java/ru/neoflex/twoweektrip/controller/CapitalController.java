@@ -13,13 +13,11 @@ import java.util.Map;
 public class CapitalController {
 
 
-    @GetMapping("/capital")
+    @PostMapping("/capital")
     public String getCapital(@RequestBody String jsonWithCountry) throws JsonProcessingException {
-        System.out.println("*** " + jsonWithCountry);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonWithCountry);
         String country = jsonNode.get("country").asText();
-        System.out.println(country);
         return getCapitalOfCountry(country);
     }
 
@@ -28,7 +26,6 @@ public class CapitalController {
         capitalOfState.put("France", "Paris");
         capitalOfState.put("RF", "Moscow");
         capitalOfState.put("China", "Beijing");
-        System.out.println(capitalOfState.get(country));
         return capitalOfState.get(country);
     }
 }
