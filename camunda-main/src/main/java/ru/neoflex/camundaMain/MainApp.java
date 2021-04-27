@@ -1,13 +1,13 @@
-package ru.neoflex.twoweektrip;
+package ru.neoflex.camundaMain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class App {
+public class MainApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(App.class);
+        SpringApplication.run(MainApp.class);
     }
 
 }

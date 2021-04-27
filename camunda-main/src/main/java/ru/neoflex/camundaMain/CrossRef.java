@@ -1,4 +1,4 @@
-package ru.neoflex.twoweektrip;
+package ru.neoflex.camundaMain;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -12,6 +12,7 @@ public class CrossRef implements JavaDelegate {
         var country = delegateExecution.getVariable("country");
         System.out.println("The country is " + country);
         String jsonCountry = "{ \"country\": \"" + country + "\"}";
+//        System.out.println("CrossRef: " + jsonCountry);
         delegateExecution.setVariable("country", jsonCountry);
     }
 }
